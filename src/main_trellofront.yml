@@ -1,0 +1,30 @@
+name: CI/CD Pipeline for Angular on Azure
+
+on:
+    push:
+        branches: [main]
+
+jobs:
+    build-and-test:
+        runs-on: ubuntu-latest
+
+        steps:
+            - uses: actions/checkout@v2
+
+            - name: Install Node.js
+              uses: actions/setup-node@v1
+              with:
+                  node-version: "21.5"
+
+            - name: Install Angular CLI
+              run: npm install -g @angular/cli
+
+            - name: Install Dependencies and Build
+              run: |
+                  npm install
+                  ng build
+
+            - name: Configure Azure Login
+              uses: azure/login@v1
+              with:
+                  creds: ${{ secrets.AZURE_CREDENTIALS }}
