@@ -31,6 +31,6 @@ jobs:
               if: github.ref == 'refs/heads/main'
               uses: azure/webapps-deploy@v2
               with:
-                  app-name: "YourAzureAppName"
+                  app-name: "trelloFront"
                   publish-profile: ${{ secrets.AzurePublishProfile }}
                   package: "./dist/your-app"
